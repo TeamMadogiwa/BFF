@@ -10,6 +10,10 @@ public class DrawLine : MonoBehaviour {
 	protected Camera m_Camera;
 	protected List<Vector3> m_Points;
 
+	private EdgeCollider2D collider;
+	private List<Vector2> list;
+
+
 	public virtual LineRenderer lineRenderer
 	{
 		get
@@ -46,7 +50,11 @@ public class DrawLine : MonoBehaviour {
 			Debug.LogWarning("DrawLine: Camera not assigned, Using Main Camera or Creating Camera if main not exists.");
 			CreateDefaultCamera();
 		}
+
+		collider = GetComponent<EdgeCollider2D>();
 		m_Points = new List<Vector3>();
+
+		list = new List<Vector2>();
 	}
 
 	protected virtual void Update()
@@ -62,8 +70,13 @@ public class DrawLine : MonoBehaviour {
 			if (!m_Points.Contains(mousePosition))
 			{
 				m_Points.Add(mousePosition);
+				list.Add(new Vector2(mousePosition.x,mousePosition.y));
 				m_LineRenderer.positionCount = m_Points.Count;
 				m_LineRenderer.SetPosition(m_LineRenderer.positionCount - 1, mousePosition);
+				Debug.Log(m_Points[0].x);
+				collider.Reset();
+				collider.points = list.ToArray();
+				
 			}
 		}
 	}
@@ -77,12 +90,13 @@ public class DrawLine : MonoBehaviour {
 		if (m_Points != null)
 		{
 			m_Points.Clear();
+			list.Clear();
 		}
 	}
 
 	protected virtual void CreateDefaultLineRenderer()
 	{
-		m_LineRenderer = gameObject.AddComponent<LineRenderer>();
+		m_LineRenderer = gameObject.GetComponent<LineRenderer>();
 		m_LineRenderer.positionCount = 0;
 		m_LineRenderer.material = new Material(Shader.Find("Particles/Additive"));
 		m_LineRenderer.startColor = Color.white;
