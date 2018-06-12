@@ -508,6 +508,7 @@ PlayerSettings:
   switchAllowsRuntimeAddOnContentInstall: 0
   switchDataLossConfirmation: 0
   switchSupportedNpadStyles: 3
+  switchNativeFsCacheSize: 32
   switchSocketConfigEnabled: 0
   switchTcpInitialSendBufferSize: 32
   switchTcpInitialReceiveBufferSize: 64
@@ -737,9 +738,9 @@ PlayerSettings:
     UNet: 1
   facebookSdkVersion: 7.9.4
   apiCompatibilityLevel: 2
-  cloudProjectId: 5a18a38c-ebae-4112-b9bf-d0a6e0c5129c
-  projectName: BallFallForever (1)
-  organizationId: shimuka018
+  cloudProjectId: 0c49c283-66e0-4ee9-bf31-02a40bb7f753
+  projectName: BallFallForever
+  organizationId: teammadogiwa
   cloudEnabled: 0
   enableNativePlatformBackendsForNewInputSystem: 0
   disableOldInputManagerSupport: 0
