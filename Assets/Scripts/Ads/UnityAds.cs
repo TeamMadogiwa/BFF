@@ -10,8 +10,6 @@ public class UnityAds : MonoBehaviour
 
 	private string gameID;
 
-	public Action callback = null;
-
 	private UnityAds(){}
 	public static UnityAds Instance
 	{
