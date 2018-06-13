@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Advertisements;
-using System;
 
 public class UnityAds : MonoBehaviour
 {
@@ -10,6 +9,8 @@ public class UnityAds : MonoBehaviour
 
 	private string gameID;
 
+	public System.Action callbackReward;
+	
 	private UnityAds(){}
 	public static UnityAds Instance
 	{
@@ -44,10 +45,13 @@ public class UnityAds : MonoBehaviour
 		if(result == ShowResult.Finished)
 		{
 			Debug.Log("Video completed - Offer a reward to the player");
-		}else if(result == ShowResult.Skipped)
+			callbackReward?.Invoke();
+		}
+		else if(result == ShowResult.Skipped)
 		{
 			Debug.LogWarning("Video was skipped - Do NOT reward the player");
-		}else if(result == ShowResult.Failed)
+		}
+		else if(result == ShowResult.Failed)
 		{
 			Debug.LogError("Video failed to show");
 		}
