@@ -9,8 +9,7 @@ public class UnityAds : MonoBehaviour
 
 	private string gameID;
 
-	public System.Action callbackReward;
-	
+	public System.Action callbackReward = null;
 	private UnityAds(){}
 	public static UnityAds Instance
 	{
