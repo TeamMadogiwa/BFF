@@ -33,11 +33,11 @@ public class GimmickManager : MonoBehaviour
 	/// </summary>
 	void Update()
 	{
-		if(Input.GetKeyDown(KeyCode.Space))
+		if(obstacleCount < 0)
 		{	
 			GameObject parentObject = new GameObject("ObstacleObjects"+obstacleCount.ToString());
 			parentObject.transform.position = new Vector3(.0f,-rangeY*2*obstacleCount,.0f);
-			for (int i = 0; i < 20; i++)
+			for (int i = 0; i < 10; i++)
 			{
 				Creator(parentObject.transform);
 			}

@@ -5,16 +5,18 @@ using UnityEngine;
 public class DrawLine : MonoBehaviour {
 
 	[SerializeField]
-	protected LineRenderer m_LineRenderer;
+	LineRenderer m_LineRenderer;
 	[SerializeField]
-	protected Camera m_Camera;
-	protected List<Vector3> m_Points;
+	Camera m_Camera;
+	List<Vector3> m_Points;
 
 	private EdgeCollider2D collider;
 	private List<Vector2> list;
 
+	private float aliveTime = 5.0f;
 
-	public virtual LineRenderer lineRenderer
+
+	public LineRenderer lineRenderer
 	{
 		get
 		{
@@ -22,7 +24,7 @@ public class DrawLine : MonoBehaviour {
 		}
 	}
 
-	public virtual new Camera camera
+	public new Camera camera
 	{
 		get
 		{
@@ -30,7 +32,7 @@ public class DrawLine : MonoBehaviour {
 		}
 	}
 
-	public virtual List<Vector3> points
+	public List<Vector3> points
 	{
 		get
 		{
@@ -38,7 +40,7 @@ public class DrawLine : MonoBehaviour {
 		}
 	}
 
-	protected virtual void Awake()
+	private void Awake()
 	{
 		if (m_LineRenderer == null)
 		{
@@ -57,14 +59,15 @@ public class DrawLine : MonoBehaviour {
 		list = new List<Vector2>();
 	}
 
-	protected virtual void Update()
+	public void test()
 	{
-		if (Input.GetMouseButtonDown(0))
+		if(aliveTime < .0f)
 		{
 			Reset();
-		}
-		if (Input.GetMouseButton(0))
-		{
+		} else aliveTime -= .0f;
+
+		
+		
 			Vector3 mousePosition = m_Camera.ScreenToWorldPoint(Input.mousePosition);
 			mousePosition.z = m_LineRenderer.transform.position.z;
 			if (!m_Points.Contains(mousePosition))
@@ -77,10 +80,9 @@ public class DrawLine : MonoBehaviour {
 				collider.points = list.ToArray();
 				
 			}
-		}
+		
 	}
-
-	protected virtual void Reset()
+	private void Reset()
 	{
 		if (m_LineRenderer != null)
 		{
@@ -93,7 +95,7 @@ public class DrawLine : MonoBehaviour {
 		}
 	}
 
-	protected virtual void CreateDefaultLineRenderer()
+	private void CreateDefaultLineRenderer()
 	{
 		m_LineRenderer = gameObject.GetComponent<LineRenderer>();
 		m_LineRenderer.positionCount = 0;
@@ -105,7 +107,7 @@ public class DrawLine : MonoBehaviour {
 		m_LineRenderer.useWorldSpace = true;
 	}
 
-	protected virtual void CreateDefaultCamera()
+	private void CreateDefaultCamera()
 	{
 		m_Camera = Camera.main;
 		if (m_Camera == null)
