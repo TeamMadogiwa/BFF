@@ -59,19 +59,23 @@ public class DrawLine : MonoBehaviour {
 		list = new List<Vector2>();
 	}
 
-	public void test()
+	public void AliveTime()
 	{
+		aliveTime -= .1f;
 		if(aliveTime < .0f)
 		{
+			Debug.Log("destroy");
 			Reset();
-		} else aliveTime -= .0f;
+		}
+	}
 
-		
-		
-			Vector3 mousePosition = m_Camera.ScreenToWorldPoint(Input.mousePosition);
+	public void test()
+	{
+		Vector3 mousePosition = m_Camera.ScreenToWorldPoint(Input.mousePosition);
 			mousePosition.z = m_LineRenderer.transform.position.z;
 			if (!m_Points.Contains(mousePosition))
 			{
+				mousePosition = new Vector3(mousePosition.x, mousePosition.y, 0.0f);
 				m_Points.Add(mousePosition);
 				list.Add(new Vector2(mousePosition.x,mousePosition.y));
 				m_LineRenderer.positionCount = m_Points.Count;
@@ -84,15 +88,16 @@ public class DrawLine : MonoBehaviour {
 	}
 	private void Reset()
 	{
-		if (m_LineRenderer != null)
-		{
-			m_LineRenderer.positionCount = 0;
-		}
-		if (m_Points != null)
-		{
-			m_Points.Clear();
-			list.Clear();
-		}
+		Destroy(this.gameObject);
+		// if (m_LineRenderer != null)
+		// {
+		// 	m_LineRenderer.positionCount = 0;
+		// }
+		// if (m_Points != null)
+		// {
+		// 	m_Points.Clear();
+		// 	list.Clear();
+		// }
 	}
 
 	private void CreateDefaultLineRenderer()
