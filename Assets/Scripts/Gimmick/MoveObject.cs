@@ -2,12 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MoveObject : MonoBehaviour {
-
-	Transform cashedTransform;
-
-	[SerializeField]
-	bool deathFlg = false;
+public class MoveObject : BaseGimmick {
 
 	[SerializeField]
 	Vector2 movePow = new Vector2(1.0f, 1.0f);
@@ -15,11 +10,6 @@ public class MoveObject : MonoBehaviour {
 	Vector2 moveSpeed = new Vector2(.1f, .1f);
 	[SerializeField]
 	Vector2 move = new Vector2(.0f, .0f);
-
-	public void Awake()
-	{
-		cashedTransform = this.transform;
-	}
 
 	public void Update()
 	{
@@ -50,20 +40,5 @@ public class MoveObject : MonoBehaviour {
 		move += new Vector2(.0f, moveSpeed.y);
 		
 		cashedTransform.position += new Vector3 ( .0f, moveSpeed.y, .0f);
-	}
-
-	private void DeathCheck(Collision2D other)
-	{
-		if(!deathFlg) return;
-
-		if(other.gameObject.name == "Ball")
-		{
-			Destroy(other.gameObject);
-		}
-	}
-
-	private void OnCollisionEnter2D(Collision2D other)
-	{
-		DeathCheck(other);
 	}
 }
