@@ -5,10 +5,10 @@ using UnityEngine;
 public class BaseGimmick : MonoBehaviour {
 
 	[SerializeField]
-	bool deathFlg = false;
+	protected bool deathFlg = false;
 
 	[SerializeField]
-	float scale = 1.0f;
+	protected float scale = 1.0f;
 
 	protected Transform cashedTransform;
 
@@ -16,6 +16,8 @@ public class BaseGimmick : MonoBehaviour {
 	{
 		cashedTransform = this.transform;
 		cashedTransform.localScale = new Vector3(scale, scale, scale);
+
+		Debug.Log("ｏｂｕｊｅｋｕｔｏ");
 	}
 
 	protected void DeathCheck(Collision2D other)

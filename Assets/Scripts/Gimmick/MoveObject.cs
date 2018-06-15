@@ -11,6 +11,11 @@ public class MoveObject : BaseGimmick {
 	[SerializeField]
 	Vector2 move = new Vector2(.0f, .0f);
 
+	void Awake()
+	{
+		deathFlg = true;
+	}
+
 	public void Update()
 	{
 		MoveX();

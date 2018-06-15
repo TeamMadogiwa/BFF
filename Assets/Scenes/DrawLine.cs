@@ -73,7 +73,6 @@ public class DrawLine : MonoBehaviour {
 				list.Add(new Vector2(mousePosition.x,mousePosition.y));
 				m_LineRenderer.positionCount = m_Points.Count;
 				m_LineRenderer.SetPosition(m_LineRenderer.positionCount - 1, mousePosition);
-				Debug.Log(m_Points[0].x);
 				collider.Reset();
 				collider.points = list.ToArray();
 				
