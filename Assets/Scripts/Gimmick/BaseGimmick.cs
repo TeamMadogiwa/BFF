@@ -16,8 +16,6 @@ public class BaseGimmick : MonoBehaviour {
 	{
 		cashedTransform = this.transform;
 		cashedTransform.localScale = new Vector3(scale, scale, scale);
-
-		Debug.Log("ｏｂｕｊｅｋｕｔｏ");
 	}
 
 	protected void DeathCheck(Collision2D other)
