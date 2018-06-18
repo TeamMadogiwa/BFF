@@ -5,16 +5,18 @@ using UnityEngine;
 public class DrawLine : MonoBehaviour {
 
 	[SerializeField]
-	protected LineRenderer m_LineRenderer;
+	LineRenderer m_LineRenderer;
 	[SerializeField]
-	protected Camera m_Camera;
-	protected List<Vector3> m_Points;
+	Camera m_Camera;
+	List<Vector3> m_Points;
 
 	private EdgeCollider2D collider;
 	private List<Vector2> list;
 
+	private float aliveTime = 5.0f;
 
-	public virtual LineRenderer lineRenderer
+
+	public LineRenderer lineRenderer
 	{
 		get
 		{
@@ -22,7 +24,7 @@ public class DrawLine : MonoBehaviour {
 		}
 	}
 
-	public virtual new Camera camera
+	public new Camera camera
 	{
 		get
 		{
@@ -30,7 +32,7 @@ public class DrawLine : MonoBehaviour {
 		}
 	}
 
-	public virtual List<Vector3> points
+	public List<Vector3> points
 	{
 		get
 		{
@@ -38,7 +40,7 @@ public class DrawLine : MonoBehaviour {
 		}
 	}
 
-	protected virtual void Awake()
+	private void Awake()
 	{
 		if (m_LineRenderer == null)
 		{
@@ -57,44 +59,48 @@ public class DrawLine : MonoBehaviour {
 		list = new List<Vector2>();
 	}
 
-	protected virtual void Update()
+	public void AliveTime()
 	{
-		if (Input.GetMouseButtonDown(0))
+		aliveTime -= .1f;
+		if(aliveTime < .0f)
 		{
+			Debug.Log("destroy");
 			Reset();
 		}
-		if (Input.GetMouseButton(0))
-		{
-			Vector3 mousePosition = m_Camera.ScreenToWorldPoint(Input.mousePosition);
+	}
+
+	public void test()
+	{
+		Vector3 mousePosition = m_Camera.ScreenToWorldPoint(Input.mousePosition);
 			mousePosition.z = m_LineRenderer.transform.position.z;
 			if (!m_Points.Contains(mousePosition))
 			{
+				mousePosition = new Vector3(mousePosition.x, mousePosition.y, 0.0f);
 				m_Points.Add(mousePosition);
 				list.Add(new Vector2(mousePosition.x,mousePosition.y));
 				m_LineRenderer.positionCount = m_Points.Count;
 				m_LineRenderer.SetPosition(m_LineRenderer.positionCount - 1, mousePosition);
-				Debug.Log(m_Points[0].x);
 				collider.Reset();
 				collider.points = list.ToArray();
 				
 			}
-		}
+		
 	}
-
-	protected virtual void Reset()
+	private void Reset()
 	{
-		if (m_LineRenderer != null)
-		{
-			m_LineRenderer.positionCount = 0;
-		}
-		if (m_Points != null)
-		{
-			m_Points.Clear();
-			list.Clear();
-		}
+		Destroy(this.gameObject);
+		// if (m_LineRenderer != null)
+		// {
+		// 	m_LineRenderer.positionCount = 0;
+		// }
+		// if (m_Points != null)
+		// {
+		// 	m_Points.Clear();
+		// 	list.Clear();
+		// }
 	}
 
-	protected virtual void CreateDefaultLineRenderer()
+	private void CreateDefaultLineRenderer()
 	{
 		m_LineRenderer = gameObject.GetComponent<LineRenderer>();
 		m_LineRenderer.positionCount = 0;
@@ -106,7 +112,7 @@ public class DrawLine : MonoBehaviour {
 		m_LineRenderer.useWorldSpace = true;
 	}
 
-	protected virtual void CreateDefaultCamera()
+	private void CreateDefaultCamera()
 	{
 		m_Camera = Camera.main;
 		if (m_Camera == null)

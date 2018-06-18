@@ -5,10 +5,10 @@ using UnityEngine;
 public class BaseGimmick : MonoBehaviour {
 
 	[SerializeField]
-	bool deathFlg = false;
+	protected bool deathFlg = false;
 
 	[SerializeField]
-	float scale = 1.0f;
+	protected float scale = 1.0f;
 
 	protected Transform cashedTransform;
 
