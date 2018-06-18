@@ -15,31 +15,6 @@ public class DrawLine : MonoBehaviour {
 
 	private float aliveTime = 5.0f;
 
-
-	public LineRenderer lineRenderer
-	{
-		get
-		{
-			return m_LineRenderer;
-		}
-	}
-
-	public new Camera camera
-	{
-		get
-		{
-			return m_Camera;
-		}
-	}
-
-	public List<Vector3> points
-	{
-		get
-		{
-			return m_Points;
-		}
-	}
-
 	private void Awake()
 	{
 		if (m_LineRenderer == null)
