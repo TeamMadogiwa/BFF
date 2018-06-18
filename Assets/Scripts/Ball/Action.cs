@@ -8,6 +8,11 @@ public class Action : MonoBehaviour
 
 	private Rigidbody2D rigidbody;
 	
+
+	public System.Action ReturnStart = null;
+
+	bool isAlive = true;
+	
 	private readonly float MaxSpeed = 5.0f;
 	// Use this for initialization
 	void Start ()
@@ -18,6 +23,11 @@ public class Action : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
 	{
+	}
+
+	public void Finished()
+	{
+		ReturnStart?.Invoke();
 	}
 
 	/// <summary>

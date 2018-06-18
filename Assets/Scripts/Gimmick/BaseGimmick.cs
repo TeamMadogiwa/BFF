@@ -14,6 +14,7 @@ public class BaseGimmick : MonoBehaviour {
 
 	protected void Awake()
 	{
+		deathFlg = true;
 		cashedTransform = this.transform;
 		cashedTransform.localScale = new Vector3(scale, scale, scale);
 	}
@@ -25,7 +26,8 @@ public class BaseGimmick : MonoBehaviour {
 		if(other.gameObject.tag == "Ball")
 		{
 			//ゲームオーバー処理(仮でスタート位置に)
-			other.transform.position = new Vector3(.0f, 3.0f, .0f);
+			//other.transform.position = new Vector3(.0f, 3.0f, .0f);
+			other.gameObject.GetComponent<Action>().Finished();
 		}
 	}
 

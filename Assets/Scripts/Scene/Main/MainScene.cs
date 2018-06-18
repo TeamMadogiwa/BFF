@@ -16,6 +16,7 @@ public class MainScene : MonoBehaviour {
 	// Use this for initialization
 	void Awake()
 	{
+		ball.GetComponent<Action>().ReturnStart = StartPrepare;
 		StartPrepare();
 	}
 
@@ -31,8 +32,10 @@ public class MainScene : MonoBehaviour {
 
 	private void StartPrepare()
 	{
+		isPlay = false;	
 		ball.transform.position = ballInit;
 		ball.GetComponent<Rigidbody2D>().gravityScale = 0.0f;
+		ball.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
 		title.SetActive(true);
 	}
 	private void GameStart()
