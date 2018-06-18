@@ -12,7 +12,8 @@ public class GimmickManager : MonoBehaviour
 	private readonly float rangeX = 2.5f;
 	private readonly float rangeY = 20.0f;
 
-	private int obstacleCount = 0;
+	private int obstacleGroupCount = 0;
+	private readonly int ObstacleMax = 10;
 
 	private static GimmickManager mInstance;
 	public static GimmickManager Instance
@@ -31,21 +32,18 @@ public class GimmickManager : MonoBehaviour
 	/// <summary>
 	/// Update is called every frame, if the MonoBehaviour is enabled.
 	/// </summary>
-	void Update()
+	public void Create()
 	{
-		if(obstacleCount < 0)
-		{	
-			GameObject parentObject = new GameObject("ObstacleObjects"+obstacleCount.ToString());
-			parentObject.transform.position = new Vector3(.0f,-rangeY*2*obstacleCount,.0f);
-			for (int i = 0; i < 10; i++)
-			{
-				Creator(parentObject.transform);
-			}
-			obstacleCount++;
+		GameObject parentObject = new GameObject("ObstacleObjects"+obstacleGroupCount.ToString());
+		parentObject.transform.position = new Vector3(.0f,-rangeY*2*obstacleGroupCount,.0f);
+		for (int i = 0; i < ObstacleMax; i++)
+		{
+			Generate(parentObject.transform);
 		}
+		obstacleGroupCount++;
 	}
 
-	private void Creator(Transform parent)
+	private void Generate(Transform parent)
 	{
 		int select = Random.Range(0,100);
 
