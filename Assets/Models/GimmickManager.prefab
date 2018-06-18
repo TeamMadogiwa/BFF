@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4976095179558528}
   - component: {fileID: 114249601466515898}
   m_Layer: 0
-  m_Name: GimmikManager
+  m_Name: GimmickManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -40,5 +40,9 @@ public class MainScene : MonoBehaviour {
 		isPlay = true;
 		ball.GetComponent<Rigidbody2D>().gravityScale = 1.0f;
 		title.SetActive(false);
+		for (int i = 0; i < 20; i++)
+		{
+			GimmickManager.Instance.Create();
+		}
 	}
 }

@@ -13,21 +13,37 @@ public class GimmickManager : MonoBehaviour
 	private readonly float rangeY = 20.0f;
 
 	private int obstacleGroupCount = 0;
-	private readonly int ObstacleMax = 10;
+	private readonly int ObstacleMax = 5;
 
+	private GimmickManager(){}
 	private static GimmickManager mInstance;
 	public static GimmickManager Instance
 	{
 		get{
 			if( mInstance == null )
 			{
-				GameObject obj = new GameObject("GimmickManager");
-                mInstance = obj.AddComponent<GimmickManager>();
+				mInstance = (GimmickManager)FindObjectOfType(typeof(GimmickManager));
+
+				//シーン内に存在しない場合はエラー
+				if (mInstance == null)
+				{
+					Debug.LogError (typeof(GimmickManager) + " is nothing");
+				}
 			}
 			return mInstance;
 		}
 		private set{}
 	}
+
+	void Awake()
+	{
+		//存在しているインスタンスが自分であれば問題なし
+		if(this == Instance){
+		return;
+		}
+		//自分じゃない場合は重複して存在しているので、エラー
+		Debug.LogError (typeof(GimmickManager) + " is duplicated");
+  }
 	
 	/// <summary>
 	/// Update is called every frame, if the MonoBehaviour is enabled.
