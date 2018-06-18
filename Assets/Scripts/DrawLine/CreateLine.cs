@@ -29,7 +29,5 @@ public class CreateLine : MonoBehaviour {
 		{
 			draw.GetComponent<DrawLine>().test();
 		}
-
-		if(draw) draw.GetComponent<DrawLine>().AliveTime();
 	}
 }

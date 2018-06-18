@@ -34,6 +34,14 @@ public class DrawLine : MonoBehaviour {
 		list = new List<Vector2>();
 	}
 
+	/// <summary>
+	/// Update is called every frame, if the MonoBehaviour is enabled.
+	/// </summary>
+	void Update()
+	{
+		AliveTime();
+	}
+
 	public void AliveTime()
 	{
 		aliveTime -= .1f;
