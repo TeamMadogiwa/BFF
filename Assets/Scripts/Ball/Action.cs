@@ -25,9 +25,9 @@ public class Action : MonoBehaviour
 	/// </summary>
 	void FixedUpdate()
 	{
-		if( rigidbody.velocity.magnitude > MaxSpeed )
-		{
-			rigidbody.velocity = rigidbody.velocity.normalized * MaxSpeed;
-		}
+		// if( rigidbody.velocity.magnitude > MaxSpeed )
+		// {
+		// 	rigidbody.velocity = rigidbody.velocity.normalized * MaxSpeed;
+		// }
 	}
 }
