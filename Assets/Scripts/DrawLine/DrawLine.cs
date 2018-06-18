@@ -44,7 +44,7 @@ public class DrawLine : MonoBehaviour {
 
 	public void AliveTime()
 	{
-		aliveTime -= .1f;
+		aliveTime -= Time.deltaTime;
 		if(aliveTime < .0f)
 		{
 			Debug.Log("destroy");
