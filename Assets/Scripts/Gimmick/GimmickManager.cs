@@ -10,10 +10,12 @@ public class GimmickManager : MonoBehaviour
 	private GameObject move;
 
 	private readonly float rangeX = 2.5f;
-	private readonly float rangeY = 20.0f;
+	private readonly float rangeY = 100.0f;
 
 	private int obstacleGroupCount = 0;
-	private readonly int ObstacleMax = 5;
+	private readonly int ObstacleMax = 20;
+
+	private readonly float adjustY = 2.0f;
 
 	private GimmickManager(){}
 	private static GimmickManager mInstance;
@@ -51,15 +53,16 @@ public class GimmickManager : MonoBehaviour
 	public void Create()
 	{
 		GameObject parentObject = new GameObject("ObstacleObjects"+obstacleGroupCount.ToString());
-		parentObject.transform.position = new Vector3(.0f,-rangeY*2*obstacleGroupCount,.0f);
+		parentObject.transform.position = new Vector3(.0f,-rangeY*obstacleGroupCount,.0f);
+		float len = rangeY / ObstacleMax;
 		for (int i = 0; i < ObstacleMax; i++)
 		{
-			Generate(parentObject.transform);
+			Generate(parentObject.transform,i*len);
 		}
 		obstacleGroupCount++;
 	}
 
-	private void Generate(Transform parent)
+	private void Generate(Transform parent,float pos_y)
 	{
 		int select = Random.Range(0,100);
 
@@ -74,7 +77,7 @@ public class GimmickManager : MonoBehaviour
 		}
 
 		float x = Random.Range(-rangeX,rangeX);
-		float y = Random.Range(-rangeY,rangeY);
+		float y = -pos_y + Random.Range(-adjustY,adjustY);
 
 		obj.transform.localPosition = new Vector3(x,y,.0f);
 	}
