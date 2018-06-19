@@ -1,6 +1,8 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CreateLine : MonoBehaviour {
 
@@ -9,6 +11,9 @@ public class CreateLine : MonoBehaviour {
 
 	List<GameObject> list = new List<GameObject>();
 	GameObject draw = null;
+
+	[SerializeField]
+	Image drawImg;
 
 	Transform cashedTransform;
 	
@@ -24,6 +29,7 @@ public class CreateLine : MonoBehaviour {
 	{
 		cashedTransform = this.transform;
 		drawAmount = MAX_DRAW_AMOUNT;
+		drawImg.rectTransform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
 	}
 	
 	// Update is called once per frame
@@ -52,6 +58,8 @@ public class CreateLine : MonoBehaviour {
 		{
 			drawFlg = true;
 		}
+		float drawX = drawAmount / MAX_DRAW_AMOUNT;
+		drawImg.rectTransform.localScale = new Vector3(drawX, 1.0f, 1.0f);
 	}
 
 	public void Reset()
