@@ -9,12 +9,13 @@ public class GimmickManager : MonoBehaviour
 	[SerializeField]
 	private GameObject move;
 
+	private List<GameObject> obstacles = null;
+
 	private readonly float rangeX = 2.5f;
 	private readonly float rangeY = 100.0f;
 
 	private int obstacleGroupCount = 0;
 	private readonly int ObstacleMax = 20;
-
 	private readonly float adjustY = 2.0f;
 
 	private GimmickManager(){}
@@ -52,8 +53,12 @@ public class GimmickManager : MonoBehaviour
 	/// </summary>
 	public void Create()
 	{
+		if( obstacles == null)
+			obstacles  = new List<GameObject>();
+
 		GameObject parentObject = new GameObject("ObstacleObjects"+obstacleGroupCount.ToString());
 		parentObject.transform.position = new Vector3(.0f,-rangeY*obstacleGroupCount,.0f);
+		obstacles.Add(parentObject);
 		float len = rangeY / ObstacleMax;
 		for (int i = 0; i < ObstacleMax; i++)
 		{
@@ -80,5 +85,17 @@ public class GimmickManager : MonoBehaviour
 		float y = -pos_y + Random.Range(-adjustY,adjustY);
 
 		obj.transform.localPosition = new Vector3(x,y,.0f);
+	}
+
+	public void GimmickDestroy()
+	{
+		if( obstacles == null)
+			return;
+		for (int i = 0; i < obstacles.Count; i++)
+		{
+			Destroy(obstacles[i]);
+		}
+		obstacles.Clear();
+		obstacleGroupCount = 0;
 	}
 }
