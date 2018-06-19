@@ -52,7 +52,7 @@ public class DrawLine : MonoBehaviour {
 		}
 	}
 
-	public void test()
+	public void Draw()
 	{
 		Vector3 mousePosition = m_Camera.ScreenToWorldPoint(Input.mousePosition);
 			mousePosition.z = m_LineRenderer.transform.position.z;

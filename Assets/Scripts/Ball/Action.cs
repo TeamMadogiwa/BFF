@@ -8,6 +8,7 @@ public class Action : MonoBehaviour
 
 	private Rigidbody2D rigidbody;
 	
+	public float moveY = .0f;
 
 	public System.Action ReturnStart = null;
 
@@ -23,6 +24,7 @@ public class Action : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
 	{
+		moveY = -(rigidbody.position.y -3);
 	}
 
 	public void Finished()
