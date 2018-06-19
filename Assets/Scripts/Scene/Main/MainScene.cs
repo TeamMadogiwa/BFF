@@ -9,6 +9,9 @@ public class MainScene : MonoBehaviour {
 	Vector3 ballInit = new Vector3(.0f, 3.0f, .0f);
 
 	[SerializeField]
+	GameObject createLine;
+
+	[SerializeField]
 	private GameObject title;
 
 	private bool isPlay = false;
@@ -53,6 +56,7 @@ public class MainScene : MonoBehaviour {
 		ball.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
 		title.SetActive(true);
 		GimmickManager.Instance.GimmickDestroy();
+		createLine.GetComponent<CreateLine>().Reset();
 	}
 	private void GameStart()
 	{
