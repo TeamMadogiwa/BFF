@@ -60,7 +60,7 @@ public class GimmickManager : MonoBehaviour
 		parentObject.transform.position = new Vector3(.0f,-rangeY*obstacleGroupCount,.0f);
 		obstacles.Add(parentObject);
 		float len = rangeY / ObstacleMax;
-		for (int i = 0; i < ObstacleMax; i++)
+		for (int i = 1; i < ObstacleMax+1; i++)
 		{
 			Generate(parentObject.transform,i*len);
 		}
