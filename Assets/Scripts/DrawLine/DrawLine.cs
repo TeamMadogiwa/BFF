@@ -87,7 +87,6 @@ public class DrawLine : MonoBehaviour {
 	{
 		m_LineRenderer = gameObject.GetComponent<LineRenderer>();
 		m_LineRenderer.positionCount = 0;
-		m_LineRenderer.material = new Material(Shader.Find("Particles/Additive"));
 		m_LineRenderer.startColor = Color.white;
 		m_LineRenderer.endColor = Color.white;
 		m_LineRenderer.startWidth = 0.3f;

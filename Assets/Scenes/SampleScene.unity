@@ -220,7 +220,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4976095179558528, guid: a5a78c65fb68c004b86ede209486c8ef, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 3
+      value: -100
       objectReference: {fileID: 0}
     - target: {fileID: 4976095179558528, guid: a5a78c65fb68c004b86ede209486c8ef, type: 2}
       propertyPath: m_LocalPosition.z
@@ -259,7 +259,7 @@ GameObject:
   - component: {fileID: 260848184}
   - component: {fileID: 260848183}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: CreateLine
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -277,6 +277,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   drawLine: {fileID: 1767681970110708, guid: ef45b16dae4588447ac66c39811faff8, type: 2}
+  MAX_DRAW_AMOUNT: 1000
+  DRAW_HEAL: 1
+  NEED_DRAW: 1
+  drawAmount: 50
+  drawFlg: 1
 --- !u!4 &260848184
 Transform:
   m_ObjectHideFlags: 0
@@ -556,6 +561,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a35c84749d29f514da1308deb84d590f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  moveY: 0
 --- !u!1 &594447156
 GameObject:
   m_ObjectHideFlags: 0
