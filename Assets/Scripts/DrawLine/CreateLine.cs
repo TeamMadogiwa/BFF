@@ -7,6 +7,7 @@ public class CreateLine : MonoBehaviour {
 	[SerializeField]
 	GameObject drawLine;
 
+	List<GameObject> list = new List<GameObject>();
 	GameObject draw = null;
 
 	Transform cashedTransform;
@@ -35,11 +36,12 @@ public class CreateLine : MonoBehaviour {
 			if(drawAmount > .0f)
 			{
 				draw = Instantiate(drawLine, cashedTransform);
+				list.Add(draw);
 			}
 		}
 		if(Input.GetMouseButton(0))
 		{
-			if(drawAmount > .0f)
+			if(drawAmount > .0f && draw)
 			{
 				draw.GetComponent<DrawLine>().Draw();
 				drawAmount -= NEED_DRAW;
@@ -50,6 +52,16 @@ public class CreateLine : MonoBehaviour {
 		{
 			drawFlg = true;
 		}
+	}
 
+	public void Reset()
+	{
+		for(int i = 0; i < list.Count; i++)
+		{
+			Destroy(list[i]);
+		}
+		list.Clear();
+
+		drawAmount = MAX_DRAW_AMOUNT;
 	}
 }
