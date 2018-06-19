@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Action : MonoBehaviour
 {
@@ -9,6 +10,8 @@ public class Action : MonoBehaviour
 	private Rigidbody2D rigidbody;
 	
 	public float moveY = .0f;
+	[SerializeField]
+	Text scoreText;
 
 	public System.Action ReturnStart = null;
 
@@ -25,6 +28,7 @@ public class Action : MonoBehaviour
 	void Update ()
 	{
 		moveY = -(rigidbody.position.y -3);
+		scoreText.text = ((int)moveY).ToString();
 	}
 
 	public void Finished()
