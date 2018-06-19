@@ -13,6 +13,9 @@ public class MainScene : MonoBehaviour {
 
 	private bool isPlay = false;
 
+	[SerializeField]
+	private int nowLevel = 0;
+
 	// Use this for initialization
 	void Awake()
 	{
@@ -28,22 +31,35 @@ public class MainScene : MonoBehaviour {
 			if( !isPlay )
 				GameStart();
 		}
+
+		if( isPlay )
+		{
+			int Count = (int)(ball.GetComponent<Action>().moveY / 100.0f);
+			if( nowLevel < Count )
+			{
+				Debug.Log("障害物生成");
+				nowLevel++;
+				GimmickManager.Instance.Create();
+			}
+		}
 	}
 
 	private void StartPrepare()
 	{
+		nowLevel = 0;
 		isPlay = false;	
 		ball.transform.position = ballInit;
 		ball.GetComponent<Rigidbody2D>().gravityScale = 0.0f;
 		ball.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
 		title.SetActive(true);
+		GimmickManager.Instance.GimmickDestroy();
 	}
 	private void GameStart()
 	{
 		isPlay = true;
 		ball.GetComponent<Rigidbody2D>().gravityScale = 1.0f;
 		title.SetActive(false);
-		for (int i = 0; i < 20; i++)
+		for (int i = 0; i < 2; i++)
 		{
 			GimmickManager.Instance.Create();
 		}
