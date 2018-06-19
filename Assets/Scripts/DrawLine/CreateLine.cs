@@ -41,7 +41,7 @@ public class CreateLine : MonoBehaviour {
 		}
 		if(Input.GetMouseButton(0))
 		{
-			if(drawAmount > .0f)
+			if(drawAmount > .0f && draw)
 			{
 				draw.GetComponent<DrawLine>().Draw();
 				drawAmount -= NEED_DRAW;
@@ -61,5 +61,7 @@ public class CreateLine : MonoBehaviour {
 			Destroy(list[i]);
 		}
 		list.Clear();
+
+		drawAmount = MAX_DRAW_AMOUNT;
 	}
 }
