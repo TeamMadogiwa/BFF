@@ -18,7 +18,7 @@ public class CreateLine : MonoBehaviour {
 	Transform cashedTransform;
 	
 	public float MAX_DRAW_AMOUNT = 100.0f;
-	public float DRAW_HEAL = 1.0f;
+	public float DRAW_HEAL = .01f;
 	public float NEED_DRAW = 1.0f;
 	public float drawAmount;
 	public bool drawFlg = true;
@@ -49,8 +49,7 @@ public class CreateLine : MonoBehaviour {
 		{
 			if(drawAmount > .0f && draw)
 			{
-				draw.GetComponent<DrawLine>().Draw();
-				drawAmount -= NEED_DRAW;
+				drawAmount -= draw.GetComponent<DrawLine>().Draw(NEED_DRAW);
 				drawFlg = false;
 			}
 		}

@@ -5,11 +5,15 @@ using UnityEngine;
 public class MoveObject : BaseGimmick {
 
 	[SerializeField]
-	Vector2 movePow = new Vector2(1.0f, 1.0f);
+	Vector2 moveVec = new Vector2(1.0f, 1.0f);
 	[SerializeField]
 	Vector2 moveSpeed = new Vector2(.1f, .1f);
 	[SerializeField]
 	Vector2 move = new Vector2(.0f, .0f);
+
+	public void Awake()
+	{
+	}
 
 	public void Update()
 	{
@@ -17,12 +21,12 @@ public class MoveObject : BaseGimmick {
 		MoveY();
 	}
 
-	public void MoveX()
+	private void MoveX()
 	{
-		if(movePow.x <= .0f) return;
+		if(moveVec.x <= .0f) return;
 
-		if(move.x >= movePow.x) moveSpeed.x *= -1;
-		else if(move.x <= -movePow.x) moveSpeed.x *= -1;
+		if(move.x >= moveVec.x) moveSpeed.x *= -1;
+		else if(move.x <= -moveVec.x) moveSpeed.x *= -1;
 
 		move += new Vector2(moveSpeed.x, .0f);
 		
@@ -30,12 +34,12 @@ public class MoveObject : BaseGimmick {
 	}
 
 	
-	public void MoveY()
+	private void MoveY()
 	{
-		if(movePow.y <= .0f) return;
+		if(moveVec.y <= .0f) return;
 
-		if(move.y >= movePow.y) moveSpeed.y *= -1;
-		else if(move.y <= -movePow.y) moveSpeed.y *= -1;
+		if(move.y >= moveVec.y) moveSpeed.y *= -1;
+		else if(move.y <= -moveVec.y) moveSpeed.y *= -1;
 
 		move += new Vector2(.0f, moveSpeed.y);
 		

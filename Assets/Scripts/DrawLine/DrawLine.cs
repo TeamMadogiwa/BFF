@@ -8,12 +8,12 @@ public class DrawLine : MonoBehaviour {
 	LineRenderer m_LineRenderer;
 	[SerializeField]
 	Camera m_Camera;
-	List<Vector3> m_Points;
+	public List<Vector3> m_Points;
 
 	private EdgeCollider2D collider;
 	private List<Vector2> list;
 
-	private float aliveTime = 2.0f;
+	private float aliveTime = 3.0f;
 
 	private void Awake()
 	{
@@ -48,15 +48,16 @@ public class DrawLine : MonoBehaviour {
 		if(aliveTime < .0f)
 		{
 			Debug.Log("destroy");
-			Reset();
+			LineDelete();
 		}
 	}
 
-	public void Draw()
+	public float Draw(float needDrawLine)
 	{
 		Vector3 mousePosition = m_Camera.ScreenToWorldPoint(Input.mousePosition);
 			mousePosition.z = m_LineRenderer.transform.position.z;
-			if (!m_Points.Contains(mousePosition))
+			if(m_Points.Count == 0 || (m_Points[m_Points.Count - 1].x != mousePosition.x ||
+				m_Points[m_Points.Count - 1].y != mousePosition.y + m_Camera.transform.position.y))
 			{
 				mousePosition = new Vector3(mousePosition.x, mousePosition.y, 0.0f);
 				m_Points.Add(mousePosition);
@@ -65,22 +66,16 @@ public class DrawLine : MonoBehaviour {
 				m_LineRenderer.SetPosition(m_LineRenderer.positionCount - 1, mousePosition);
 				collider.Reset();
 				collider.points = list.ToArray();
-				
+
+				if(list.Count > 1)
+				return (list[list.Count - 2] - list[list.Count - 1]).magnitude;
 			}
-		
+			return .0f;
 	}
-	private void Reset()
+
+	private void LineDelete()
 	{
 		Destroy(this.gameObject);
-		// if (m_LineRenderer != null)
-		// {
-		// 	m_LineRenderer.positionCount = 0;
-		// }
-		// if (m_Points != null)
-		// {
-		// 	m_Points.Clear();
-		// 	list.Clear();
-		// }
 	}
 
 	private void CreateDefaultLineRenderer()
