@@ -11,17 +11,13 @@ public class MoveObject : BaseGimmick {
 	[SerializeField]
 	Vector2 move = new Vector2(.0f, .0f);
 
-	public void Awake()
-	{
-	}
-
 	public void Update()
 	{
 		MoveX();
 		MoveY();
 	}
 
-	private void MoveX()
+	public void MoveX()
 	{
 		if(moveVec.x <= .0f) return;
 
@@ -34,7 +30,7 @@ public class MoveObject : BaseGimmick {
 	}
 
 	
-	private void MoveY()
+	public void MoveY()
 	{
 		if(moveVec.y <= .0f) return;
 
