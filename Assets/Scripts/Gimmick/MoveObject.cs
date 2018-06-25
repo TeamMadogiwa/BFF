@@ -2,43 +2,46 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MoveObject : BaseGimmick {
+public class MoveObject : BaseGimmick
+{
 
-	[SerializeField]
-	Vector2 moveVec = new Vector2(1.0f, 1.0f);
-	[SerializeField]
-	Vector2 moveSpeed = new Vector2(.1f, .1f);
-	[SerializeField]
-	Vector2 move = new Vector2(.0f, .0f);
+    private float speed = 3.0f;
+    private Vector3 moveVector = new Vector3(1.0f, 0.0f, 0.0f);
+    //readonlyにしてコンストラクタで呼びたいがわざわざそのため別クラスつくるのもなぁー
+    private float DistanceLimit = 3.0f;
 
-	public void Update()
+    private float distance = .0f;
+    private float direction = 1.0f;
+
+    new void Awake()
+    {
+        base.Awake();
+        speed = Random.Range(2.0f, 5.0f);
+        moveVector = new Vector3(Random.Range(-1.0f, 1.0f), Random.Range(-1.0f, 1.0f), .0f);
+        DistanceLimit = Random.Range(1.0f, 4.5f);
+    }
+
+    public void Update()
 	{
-		MoveX();
-		MoveY();
-	}
+        Move();
+    }
 
-	public void MoveX()
-	{
-		if(moveVec.x <= .0f) return;
+    private void Move()
+    {
 
-		if(move.x >= moveVec.x) moveSpeed.x *= -1;
-		else if(move.x <= -moveVec.x) moveSpeed.x *= -1;
+        if (moveVector.sqrMagnitude <= 0)
+            return;
 
-		move += new Vector2(moveSpeed.x, .0f);
-		
-		cashedTransform.position += new Vector3 (moveSpeed.x, .0f, .0f);
-	}
+        Vector3 value = moveVector * speed * Time.deltaTime;
+        //magnitudeは小数点第4位未満は0になるからよろしく
+        distance += value.magnitude;
 
-	
-	public void MoveY()
-	{
-		if(moveVec.y <= .0f) return;
+        if (distance > DistanceLimit)
+        {
+            distance = .0f;
+            direction = -direction;
+        }
 
-		if(move.y >= moveVec.y) moveSpeed.y *= -1;
-		else if(move.y <= -moveVec.y) moveSpeed.y *= -1;
-
-		move += new Vector2(.0f, moveSpeed.y);
-		
-		cashedTransform.position += new Vector3 ( .0f, moveSpeed.y, .0f);
-	}
+        cashedTransform.position += value * direction;
+    }
 }
