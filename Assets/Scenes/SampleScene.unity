@@ -123,7 +123,7 @@ GameObject:
   - component: {fileID: 30133655}
   - component: {fileID: 30133654}
   - component: {fileID: 30133653}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: DrawGage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -482,7 +482,7 @@ GameObject:
   - component: {fileID: 516477480}
   - component: {fileID: 516477479}
   - component: {fileID: 516477481}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: MainScene
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -499,14 +499,14 @@ Canvas:
   serializedVersion: 3
   m_RenderMode: 1
   m_Camera: {fileID: 519420031}
-  m_PlaneDistance: 100
+  m_PlaneDistance: 5
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
-  m_SortingLayerID: 0
+  m_SortingLayerID: 1646682697
   m_SortingOrder: 0
   m_TargetDisplay: 0
 --- !u!224 &516477478
@@ -758,7 +758,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 829606874}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: titleObj
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -795,7 +795,7 @@ GameObject:
   - component: {fileID: 934928542}
   - component: {fileID: 934928544}
   - component: {fileID: 934928543}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Scorelabel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -818,7 +818,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 73.8, y: -21.800049}
+  m_AnchoredPosition: {x: 73.80005, y: -21.799805}
   m_SizeDelta: {x: 83.98, y: 25}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &934928543
@@ -933,7 +933,7 @@ GameObject:
   - component: {fileID: 1211769709}
   - component: {fileID: 1211769708}
   - component: {fileID: 1211769710}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: description
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1021,7 +1021,7 @@ GameObject:
   - component: {fileID: 1238953500}
   - component: {fileID: 1238953502}
   - component: {fileID: 1238953501}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: GameObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1043,7 +1043,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.81866676, y: 0.90333337}
   m_AnchorMax: {x: 0.97333336, y: 1}
-  m_AnchoredPosition: {x: -0.39996338, y: 0}
+  m_AnchoredPosition: {x: -0.39990234, y: 0}
   m_SizeDelta: {x: -0.78999996, y: -0.05000019}
   m_Pivot: {x: 1, y: 1}
 --- !u!114 &1238953501
@@ -1089,7 +1089,7 @@ GameObject:
   - component: {fileID: 1336926091}
   - component: {fileID: 1336926093}
   - component: {fileID: 1336926092}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Score
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1316,14 +1316,14 @@ Canvas:
   serializedVersion: 3
   m_RenderMode: 1
   m_Camera: {fileID: 519420031}
-  m_PlaneDistance: 100
+  m_PlaneDistance: 5
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
-  m_SortingLayerID: 0
+  m_SortingLayerID: 1646682697
   m_SortingOrder: 0
   m_TargetDisplay: 0
 --- !u!224 &1596159418
@@ -1357,7 +1357,7 @@ GameObject:
   - component: {fileID: 1819268896}
   - component: {fileID: 1819268895}
   - component: {fileID: 1819268897}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: title
   m_TagString: Untagged
   m_Icon: {fileID: 0}
