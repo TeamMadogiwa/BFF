@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class MainScene : MonoBehaviour {
 
@@ -19,12 +20,27 @@ public class MainScene : MonoBehaviour {
 	[SerializeField]
 	private int nowLevel = 0;
 
-	// Use this for initialization
-	void Awake()
+    [SerializeField]
+    Image bg;
+
+    [SerializeField]
+    private float hue = 0.0f;
+    private float sat = 0.14777f;
+    private float v = 1.0f;
+
+
+    bool isCourtine1 = false;
+    bool isCourtine2 = false;
+
+    // Use this for initialization
+    void Awake()
 	{
 		ball.GetComponent<Action>().ReturnStart = StartPrepare;
 		StartPrepare();
-	}
+        hue = 0.608f;
+        bg.color = Color.HSVToRGB(hue, sat, v);
+
+    }
 
 	// Update is called once per frame
 	void Update ()
@@ -43,9 +59,22 @@ public class MainScene : MonoBehaviour {
 				Debug.Log("障害物生成");
 				nowLevel++;
 				GimmickManager.Instance.Create();
-			}
+            }
 		}
-	}
+
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+
+            if (!isCourtine1)
+                StartCoroutine(BGChange1());
+        }
+
+        if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            if( !isCourtine2)
+                StartCoroutine(BGChange2());
+        }
+    }
 
 	private void StartPrepare()
 	{
@@ -68,4 +97,57 @@ public class MainScene : MonoBehaviour {
 			GimmickManager.Instance.Create();
 		}
 	}
+    private IEnumerator BGChange1()
+    {
+        float value = 0.002f;
+        isCourtine1 = true;
+        //HSVでHを加算してくタイプ
+        for (int i = 0; i < 100; i++)
+        {
+            hue += value;
+            if (hue > 1.0f)
+                hue -= 1.0f;
+            bg.color = Color.HSVToRGB(hue, sat, v);
+
+            yield return null;
+        }
+
+        isCourtine1 = false;
+    }
+
+    private IEnumerator BGChange2()
+    {
+        float value = 0.002f;
+        isCourtine2 = true;
+        float test = v / 100.0f;
+        for(int i = 0; i< 100; i++)
+        {
+            v -= test;
+            if (v < 0.0f)
+                v = 0.0f;
+            bg.color = Color.HSVToRGB(hue, sat, v);
+            Debug.Log("ふぇーどいん");
+            yield return null;
+        }
+        hue += value * 100.0f;
+        if (hue > 1.0f)
+            hue -= 1.0f;
+        bg.color = Color.HSVToRGB(hue, sat, v);
+
+        for (int i = 0; i < 100; i++)
+        {
+            v += test;
+            bg.color = Color.HSVToRGB(hue, sat, v);
+            Debug.Log("ふぇーどあうと");
+            yield return null;
+        }
+
+        v = 1.0f;
+        bg.color = Color.HSVToRGB(hue, sat, v);
+
+        yield return null;
+
+        isCourtine2 = false;
+    }
+
 }
