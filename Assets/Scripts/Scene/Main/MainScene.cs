@@ -32,6 +32,8 @@ public class MainScene : MonoBehaviour {
     bool isCourtine1 = false;
     bool isCourtine2 = false;
 
+    int highScore;
+
     // Use this for initialization
     void Awake()
 	{
@@ -39,7 +41,6 @@ public class MainScene : MonoBehaviour {
 		StartPrepare();
         hue = 0.608f;
         bg.color = Color.HSVToRGB(hue, sat, v);
-
     }
 
 	// Update is called once per frame
@@ -86,6 +87,8 @@ public class MainScene : MonoBehaviour {
 		title.SetActive(true);
 		GimmickManager.Instance.GimmickDestroy();
 		createLine.GetComponent<CreateLine>().Reset();
+        HighScore();
+        ball.GetComponent<Action>().SetHighScore(highScore);
 	}
 	private void GameStart()
 	{
@@ -150,4 +153,18 @@ public class MainScene : MonoBehaviour {
         isCourtine2 = false;
     }
 
+    void HighScore()
+    {
+        int score = ball.GetComponent<Action>().Score();
+        int saveHighScore = PlayerPrefs.GetInt("highScore", 0);
+        if(score > saveHighScore)
+        {
+            PlayerPrefs.SetInt("HighScore", score);
+            highScore = score;
+        } else
+        {
+            highScore = saveHighScore;
+        }
+
+    }
 }

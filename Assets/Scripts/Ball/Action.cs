@@ -46,4 +46,15 @@ public class Action : MonoBehaviour
 		// 	rigidbody.velocity = rigidbody.velocity.normalized * MaxSpeed;
 		// }
 	}
+
+	public int Score()
+	{
+		return (int)moveY;
+	}
+
+	public void SetHighScore(int score)
+	{
+		Debug.Log(score);
+		scoreText.text = score.ToString();
+	}
 }

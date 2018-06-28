@@ -17,7 +17,7 @@ public class CreateLine : MonoBehaviour {
 
 	Transform cashedTransform;
 	
-	public float MAX_DRAW_AMOUNT = 100.0f;
+	public float MAX_DRAW_AMOUNT = 5.0f;
 	public float DRAW_HEAL = .01f;
 	public float NEED_DRAW = 1.0f;
 	public float drawAmount;

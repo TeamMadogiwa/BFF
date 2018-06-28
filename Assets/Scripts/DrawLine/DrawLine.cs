@@ -13,7 +13,7 @@ public class DrawLine : MonoBehaviour {
 	private EdgeCollider2D collider;
 	private List<Vector2> list;
 
-	private float aliveTime = 3.0f;
+	private float aliveTime = 2.0f;
 
 	private void Awake()
 	{

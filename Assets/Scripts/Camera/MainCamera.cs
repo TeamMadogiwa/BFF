@@ -18,12 +18,12 @@ public class MainCamera : MonoBehaviour {
 		}
 
 		cashedTransform = this.transform;
-		cashedTransform.position = new Vector3(.0f, ball.transform.position.y , -10.0f);
+		cashedTransform.position = new Vector3(.0f, ball.transform.position.y, -10.0f);
 	}
 
 	
 	// Update is called once per frame
 	void Update () {
-		cashedTransform.position = new Vector3(.0f, ball.transform.position.y, -10.0f);
+		cashedTransform.position = new Vector3(.0f, ball.transform.position.y -2.0f, -10.0f);
 	}
 }
