@@ -28,7 +28,7 @@ public class Action : MonoBehaviour
 	void Update ()
 	{
 		moveY = -(rigidbody.position.y -3);
-		scoreText.text = ((int)moveY).ToString();
+		scoreText.text = string.Format("{0:D8}", ((int)moveY));
 	}
 
 	public void Finished()
@@ -55,6 +55,6 @@ public class Action : MonoBehaviour
 	public void SetHighScore(int score)
 	{
 		Debug.Log(score);
-		scoreText.text = score.ToString();
+		scoreText.text = string.Format("{0:D8}",score);
 	}
 }
