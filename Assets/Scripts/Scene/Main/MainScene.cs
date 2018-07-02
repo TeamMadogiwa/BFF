@@ -28,10 +28,6 @@ public class MainScene : MonoBehaviour {
     private float sat = 0.14777f;
     private float v = 1.0f;
 
-
-    bool isCourtine1 = false;
-    bool isCourtine2 = false;
-
     int highScore;
 
     // Use this for initialization
@@ -60,21 +56,9 @@ public class MainScene : MonoBehaviour {
 				Debug.Log("障害物生成");
 				nowLevel++;
 				GimmickManager.Instance.Create();
+                BGChange();
             }
 		}
-
-        if (Input.GetKeyDown(KeyCode.Alpha1))
-        {
-
-            if (!isCourtine1)
-                StartCoroutine(BGChange1());
-        }
-
-        if (Input.GetKeyDown(KeyCode.Alpha2))
-        {
-            if( !isCourtine2)
-                StartCoroutine(BGChange2());
-        }
     }
 
 	private void StartPrepare()
@@ -100,10 +84,9 @@ public class MainScene : MonoBehaviour {
 			GimmickManager.Instance.Create();
 		}
 	}
-    private IEnumerator BGChange1()
+    private IEnumerator BGChange()
     {
         float value = 0.002f;
-        isCourtine1 = true;
         //HSVでHを加算してくタイプ
         for (int i = 0; i < 100; i++)
         {
@@ -114,43 +97,6 @@ public class MainScene : MonoBehaviour {
 
             yield return null;
         }
-
-        isCourtine1 = false;
-    }
-
-    private IEnumerator BGChange2()
-    {
-        float value = 0.002f;
-        isCourtine2 = true;
-        float test = v / 100.0f;
-        for(int i = 0; i< 100; i++)
-        {
-            v -= test;
-            if (v < 0.0f)
-                v = 0.0f;
-            bg.color = Color.HSVToRGB(hue, sat, v);
-            Debug.Log("ふぇーどいん");
-            yield return null;
-        }
-        hue += value * 100.0f;
-        if (hue > 1.0f)
-            hue -= 1.0f;
-        bg.color = Color.HSVToRGB(hue, sat, v);
-
-        for (int i = 0; i < 100; i++)
-        {
-            v += test;
-            bg.color = Color.HSVToRGB(hue, sat, v);
-            Debug.Log("ふぇーどあうと");
-            yield return null;
-        }
-
-        v = 1.0f;
-        bg.color = Color.HSVToRGB(hue, sat, v);
-
-        yield return null;
-
-        isCourtine2 = false;
     }
 
     void HighScore()
